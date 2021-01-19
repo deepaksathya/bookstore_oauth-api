@@ -3,7 +3,7 @@ package accesstoken
 import (
 	"strings"
 
-	"github.com/deepaksathya/bookstore_oauth-api/src/utils/errors"
+	"github.com/deepaksathya/bookstore_users-api/utils/errors"
 )
 
 type Repository interface {
@@ -18,7 +18,11 @@ type service struct {
 	repository Repository
 }
 
-// NewService creeates a Repository
+// NewService creates a Repository.
+// It takes a Repository interface implementation
+// - means any DB layer object that will faciliate token retrieval and manipulation
+// Returns a service layer interface implementaion that will
+// act as intermediary for access token retrieval and manipulation
 func NewService(repo Repository) Service {
 	return &service{
 		repository: repo,

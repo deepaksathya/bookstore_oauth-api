@@ -1,6 +1,7 @@
 package http
 
 import (
+	"log"
 	"net/http"
 
 	accesstoken "github.com/deepaksathya/bookstore_oauth-api/src/domain/access_token"
@@ -24,7 +25,7 @@ func NewHandler(service accesstoken.Service) AccessTokenHandler {
 func (h *accessTokenHandler) GetByID(c *gin.Context) {
 	accessTokenID := c.Param("access_token_id")
 	accessToken, err := h.service.GetByID(accessTokenID)
-
+	log.Println(err)
 	if err != nil {
 		c.JSON(err.Status, err)
 	}
